@@ -82,7 +82,7 @@ flowchart TD
 flowchart TD
     Start([Bắt đầu]) --> R1[Nhận dữ liệu từ socket]
     R1 --> R2[Thêm vào buffer]
-    R2 --> P1{Có "Trò chơi\nkết thúc!" trong\nbuffer?}
+    R2 --> P1{Có 'Trò chơi\nkết thúc!' trong\nbuffer?}
 
     P1 -->|Có| P2[Hiển thị kết quả cuối]
     P2 --> P3[Lưu điểm số]
@@ -91,14 +91,14 @@ flowchart TD
 
     P1 -->|Không| P5{Đang đợi\nkết quả đáp án?}
 
-    P5 -->|Có| P6{Có "Đáp án đúng!"\ntrong buffer?}
+    P5 -->|Có| P6{Có 'Đáp án đúng!'\ntrong buffer?}
     P6 -->|Có| P7[Hiển thị thông báo đúng]
     P7 --> P8[Cập nhật điểm số]
     P8 --> P9[Đánh dấu đợi câu hỏi mới]
     P9 --> P10[Hẹn giờ chuyển câu hỏi]
     P10 --> End2([Tiếp tục])
 
-    P6 -->|Không| P11{Có "Đáp án sai!"\ntrong buffer?}
+    P6 -->|Không| P11{Có 'Đáp án sai!'\ntrong buffer?}
     P11 -->|Có| P12[Hiển thị thông báo sai]
     P12 --> P9
     P11 -->|Không| End3([Tiếp tục])
@@ -196,14 +196,14 @@ flowchart TD
     UA7 --> SA1[Server nhận đáp án]
     SA1 --> SA2{Đáp án đúng?}
 
-    SA2 -->|Có| SA3[Server gửi "Đáp án đúng!"]
+    SA2 -->|Có| SA3[Server gửi 'Đáp án đúng!']
     SA3 --> CA1[Client nhận kết quả]
-    CA1 --> CA2[Hiển thị overlay "CHÍNH XÁC!"]
+    CA1 --> CA2[Hiển thị overlay 'CHÍNH XÁC!']
     CA2 --> CA3[Cập nhật điểm số và thống kê]
 
-    SA2 -->|Không| SA4[Server gửi "Đáp án sai!"]
+    SA2 -->|Không| SA4[Server gửi 'Đáp án sai!']
     SA4 --> CA4[Client nhận kết quả]
-    CA4 --> CA5[Hiển thị overlay "SAI RỒI!"]
+    CA4 --> CA5[Hiển thị overlay 'SAI RỒI!']
     CA5 --> CA6[Hiển thị đáp án đúng]
     CA6 --> CA7[Cập nhật thống kê]
 
