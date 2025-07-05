@@ -101,16 +101,19 @@ Giao thức giao tiếp giữa client và server là các tin nhắn văn bản 
 ## Xử lý đồng thời
 
 ```mermaid
-graph TD
-    A[Server] --> B[Thread Main]
-    A --> C[Thread Client 1]
-    A --> D[Thread Client 2]
-    A --> E[Thread Client n]
+flowchart TD
+    subgraph Server
+        A[Server]
+        A -->|"socket.accept()"| MainThread["Thread Main"]
+        A -->|"handle_client"| Client1["Thread Client 1"]
+        A -->|"handle_client"| Client2["Thread Client 2"]
+        A -->|"handle_client"| ClientN["Thread Client n"]
 
-    B -->|socket.accept()| F[Chờ kết nối mới]
-    C -->|handle_client| G[Xử lý client 1]
-    D -->|handle_client| H[Xử lý client 2]
-    E -->|handle_client| I[Xử lý client n]
+        MainThread -->|"socket.accept()"| Waiting["Chờ kết nối mới"]
+        Client1 -->|"handle_client"| Handle1["Xử lý client 1"]
+        Client2 -->|"handle_client"| Handle2["Xử lý client 2"]
+        ClientN -->|"handle_client"| HandleN["Xử lý client n"]
+    end
 ```
 
 Phía server sử dụng xử lý đa luồng để hỗ trợ nhiều người chơi cùng lúc. Mỗi kết nối client được xử lý bởi một luồng riêng biệt.
